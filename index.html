@@ -18,18 +18,19 @@
   <title>溫馨浪漫台南之旅</title>
   <style>
     :root {
-      --ink: #33261f;
-      --muted: #66534a;
-      --paper: #f8efdf;
-      --paper-deep: #ead8bd;
-      --card: #fffaf0;
-      --line: #d7b996;
-      --brick: #a64f3d;
-      --brick-dark: #78392e;
-      --green: #3f5a4b;
-      --caramel: #c8874d;
-      --sun: #e8a85c;
-      --shadow: 0 10px 24px rgba(86, 54, 35, 0.14);
+      /* 從封面圖 images/cover.webp 取出的三個主要顏色 */
+      --primary: #2868a8;      /* 主色：愛琴海藍（圓頂） */
+      --paper: #f2ecdf;        /* 淡背景色：砂牆米（崖地/牆面） */
+      --ink: #17304a;          /* 深文字色：深海墨藍 */
+
+      /* 由三主色衍生的輔助色，維持同一色系 */
+      --primary-dark: #1c4e82;
+      --muted: #4a5a6b;
+      --paper-deep: #e3d8c1;
+      --card: #fffdf7;
+      --line: #d9cdb3;
+      --on-primary: #ffffff;
+      --shadow: 0 10px 24px rgba(23, 48, 74, 0.14);
     }
 
     * {
@@ -45,13 +46,10 @@
       margin: 0;
       overflow-x: hidden;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 8% 8%, rgba(232, 168, 92, 0.18) 0, transparent 23%),
-        linear-gradient(135deg, rgba(255, 250, 240, 0.65), transparent 45%),
-        var(--paper);
-      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
       font-size: 17px;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     .page {
@@ -65,9 +63,9 @@
       width: 100%;
       height: auto;
       overflow: hidden;
-      border: 4px solid var(--green);
+      border: 4px solid var(--primary);
       border-radius: 24px;
-      background: #e9b26d;
+      background: var(--paper-deep);
       box-shadow: var(--shadow);
     }
 
@@ -78,7 +76,7 @@
     .eyebrow {
       display: inline-block;
       margin: 0 0 8px;
-      color: var(--brick-dark);
+      color: var(--primary-dark);
       font-size: 0.86rem;
       font-weight: 800;
       letter-spacing: 0.12em;
@@ -94,12 +92,12 @@
     h1,
     h2,
     h3 {
-      font-family: Georgia, "Noto Serif TC", "PMingLiU", serif;
+      font-family: Georgia, "Times New Roman", "Noto Serif TC", "PMingLiU", serif;
     }
 
     h1 {
       margin-bottom: 12px;
-      color: var(--brick-dark);
+      color: var(--primary-dark);
       font-size: clamp(2rem, 9vw, 3.5rem);
       line-height: 1.18;
       letter-spacing: 0.04em;
@@ -117,10 +115,10 @@
       gap: 10px;
       align-items: flex-start;
       padding: 13px 15px;
-      border: 1px solid #d99b7c;
+      border: 1px solid var(--primary);
       border-radius: 14px;
-      color: var(--brick-dark);
-      background: #fff1e2;
+      color: var(--primary-dark);
+      background: #e7eff7;
       font-size: 0.93rem;
       font-weight: 700;
     }
@@ -134,7 +132,7 @@
       padding: 22px 16px 18px;
       border: 1px solid var(--line);
       border-radius: 22px;
-      background: rgba(255, 250, 240, 0.84);
+      background: var(--card);
       box-shadow: var(--shadow);
     }
 
@@ -152,8 +150,8 @@
       flex: 0 0 52px;
       place-items: center;
       border-radius: 16px;
-      color: #fffaf0;
-      background: var(--brick);
+      color: var(--on-primary);
+      background: var(--primary);
       font-size: 1.1rem;
       font-weight: 800;
       line-height: 1.1;
@@ -162,7 +160,7 @@
 
     .day-heading h2 {
       margin: 0;
-      color: var(--green);
+      color: var(--primary-dark);
       font-size: 1.45rem;
       line-height: 1.25;
     }
@@ -207,7 +205,7 @@
       margin: 12px 0 0 9px;
       border: 3px solid var(--paper);
       border-radius: 50%;
-      background: var(--caramel);
+      background: var(--primary);
       box-shadow: 0 0 0 2px var(--paper-deep);
     }
 
@@ -225,7 +223,7 @@
       gap: 6px 10px;
       align-items: center;
       margin-bottom: 5px;
-      color: var(--brick-dark);
+      color: var(--primary-dark);
       font-size: 0.88rem;
       font-weight: 800;
     }
@@ -233,8 +231,9 @@
     .time {
       padding: 2px 8px;
       border-radius: 999px;
-      color: #573019;
-      background: #f3d2a9;
+      color: var(--on-primary);
+      background: var(--primary);
+      font-weight: 700;
       white-space: nowrap;
     }
 
@@ -259,6 +258,178 @@
       text-align: center;
     }
 
+    /* 檢視切換列：第一天 / 第二天 / 全部 */
+    .day-switch {
+      display: flex;
+      gap: 8px;
+      margin: 20px 0 4px;
+    }
+
+    .day-switch button {
+      flex: 1 1 0;
+      padding: 10px 8px;
+      border: 1.5px solid var(--primary);
+      border-radius: 999px;
+      color: var(--primary-dark);
+      background: var(--card);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .day-switch button[aria-pressed="true"] {
+      color: var(--on-primary);
+      background: var(--primary);
+    }
+
+    /* 切換隱藏某一天 */
+    .day-plan.is-hidden {
+      display: none;
+    }
+
+    /* 每站勾選 */
+    .stop-check {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 0 0 8px;
+      color: var(--primary-dark);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .stop-check input {
+      width: 22px;
+      height: 22px;
+      margin: 0;
+      flex: 0 0 auto;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* 已完成的站點樣式 */
+    .stop-card.is-done {
+      opacity: 0.6;
+    }
+
+    .stop-card.is-done h3 {
+      text-decoration: line-through;
+    }
+
+    /* 晚餐投票區塊 */
+    .vote-field {
+      display: block;
+      margin: 0 0 12px;
+    }
+
+    .vote-field label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--primary-dark);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .vote-field input {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--card);
+      color: var(--ink);
+      font: inherit;
+    }
+
+    .vote-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .vote-options button {
+      flex: 1 1 42%;
+      padding: 11px 10px;
+      border: 1.5px solid var(--primary);
+      border-radius: 12px;
+      color: var(--primary-dark);
+      background: var(--card);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .vote-options button[aria-pressed="true"] {
+      color: var(--on-primary);
+      background: var(--primary);
+    }
+
+    .vote-submit {
+      width: 100%;
+      padding: 13px;
+      border: 0;
+      border-radius: 12px;
+      color: var(--on-primary);
+      background: var(--primary);
+      font: inherit;
+      font-size: 1.02rem;
+      font-weight: 800;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .vote-submit:disabled {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    .vote-msg {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      min-height: 1.2em;
+    }
+
+    .vote-tally {
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .vote-tally li {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--paper-deep);
+      font-weight: 700;
+    }
+
+    .vote-tally .count {
+      color: var(--primary-dark);
+    }
+
+    .vote-list {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .vote-list li {
+      padding: 4px 0;
+    }
+
+    .vote-list .who {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
     @media (min-width: 560px) {
       .page {
         padding-top: 28px;
@@ -277,7 +448,7 @@
 </head>
 <body>
   <main class="page">
-    <img class="main-visual" src="cover_santorini.png" alt="希臘婚禮風的藍頂白屋與暖陽海景封面插畫，左側留白給標題" width="1600" height="900">
+    <img class="main-visual" src="images/cover.webp" alt="希臘婚禮風的藍頂白屋海崖封面插畫，暖陽與海景，左側留白給標題" width="1280" height="720">
 
 
     <header class="hero">
@@ -290,7 +461,13 @@
       </div>
     </header>
 
-    <section class="day" aria-labelledby="day-one-title">
+    <div class="day-switch" role="group" aria-label="選擇要看的行程">
+      <button type="button" data-view="1" aria-pressed="false">第一天</button>
+      <button type="button" data-view="2" aria-pressed="false">第二天</button>
+      <button type="button" data-view="all" aria-pressed="true">全部</button>
+    </div>
+
+    <section class="day day-plan" id="day-1" aria-labelledby="day-one-title">
       <div class="day-heading">
         <div class="day-number">DAY<br>01</div>
         <div>
@@ -303,6 +480,7 @@
         <li class="timeline-item stop">
           <div class="stop-dot" aria-hidden="true"></div>
           <div class="stop-card">
+            <label class="stop-check"><input type="checkbox" data-stop="d1-1"><span>完成這一站</span></label>
             <div class="stop-meta"><span class="time">10:30（示意）</span><span>抵達</span></div>
             <h3>台南車站・行李寄放（示意）</h3>
             <p>先寄放行李、補充水分，確認接下來的步行與交通路線。</p>
@@ -312,6 +490,7 @@
         <li class="timeline-item stop">
           <div class="stop-dot" aria-hidden="true"></div>
           <div class="stop-card">
+            <label class="stop-check"><input type="checkbox" data-stop="d1-2"><span>完成這一站</span></label>
             <div class="stop-meta"><span class="time">12:00（示意）</span><span>午餐</span></div>
             <h3>古城家常菜・午餐店（示意）</h3>
             <p>用一份熱騰騰的台南風味午餐開場，吃飽再開始下午行程。</p>
@@ -321,6 +500,7 @@
         <li class="timeline-item stop">
           <div class="stop-dot" aria-hidden="true"></div>
           <div class="stop-card">
+            <label class="stop-check"><input type="checkbox" data-stop="d1-3"><span>完成這一站</span></label>
             <div class="stop-meta"><span class="time">14:00（示意）</span><span>散步景點</span></div>
             <h3>神農街與海安路（示意）</h3>
             <p>沿著老屋街區拍照、逛小店，留一段不排太滿的散步時間。</p>
@@ -330,6 +510,7 @@
         <li class="timeline-item stop">
           <div class="stop-dot" aria-hidden="true"></div>
           <div class="stop-card">
+            <label class="stop-check"><input type="checkbox" data-stop="d1-4"><span>完成這一站</span></label>
             <div class="stop-meta"><span class="time">18:00（示意）</span><span>晚餐</span></div>
             <h3>府城小吃聚落・晚餐（示意）</h3>
             <p>挑幾樣想吃的小吃分著吃，飯後再到附近街區散步消化。</p>
@@ -338,7 +519,7 @@
       </ol>
     </section>
 
-    <section class="day" aria-labelledby="day-two-title">
+    <section class="day day-plan" id="day-2" aria-labelledby="day-two-title">
       <div class="day-heading">
         <div class="day-number">DAY<br>02</div>
         <div>
@@ -351,6 +532,7 @@
         <li class="timeline-item stop">
           <div class="stop-dot" aria-hidden="true"></div>
           <div class="stop-card">
+            <label class="stop-check"><input type="checkbox" data-stop="d2-1"><span>完成這一站</span></label>
             <div class="stop-meta"><span class="time">08:30（示意）</span><span>早餐</span></div>
             <h3>巷口牛肉湯・早餐（示意）</h3>
             <p>用一碗暖胃早餐開啟第二天，吃完保留體力繼續走景點。</p>
@@ -360,6 +542,7 @@
         <li class="timeline-item stop">
           <div class="stop-dot" aria-hidden="true"></div>
           <div class="stop-card">
+            <label class="stop-check"><input type="checkbox" data-stop="d2-2"><span>完成這一站</span></label>
             <div class="stop-meta"><span class="time">10:00（示意）</span><span>景點</span></div>
             <h3>赤崁樓周邊・古蹟散步（示意）</h3>
             <p>走訪古蹟與周邊街巷，安排一段慢慢看建築、聽故事的時間。</p>
@@ -369,6 +552,7 @@
         <li class="timeline-item stop">
           <div class="stop-dot" aria-hidden="true"></div>
           <div class="stop-card">
+            <label class="stop-check"><input type="checkbox" data-stop="d2-3"><span>完成這一站</span></label>
             <div class="stop-meta"><span class="time">12:30（示意）</span><span>午餐</span></div>
             <h3>老宅餐桌・午餐（示意）</h3>
             <p>找間舒適的老宅餐館坐下來休息，替下午返程補充能量。</p>
@@ -378,6 +562,7 @@
         <li class="timeline-item stop">
           <div class="stop-dot" aria-hidden="true"></div>
           <div class="stop-card">
+            <label class="stop-check"><input type="checkbox" data-stop="d2-4"><span>完成這一站</span></label>
             <div class="stop-meta"><span class="time">14:30（示意）</span><span>伴手禮</span></div>
             <h3>府城甜點舖・伴手禮（示意）</h3>
             <p>挑選常溫、好攜帶的點心，最後整理行李並預留回程交通時間。</p>
@@ -402,6 +587,266 @@
         <span style="display:inline-block;margin-top:8px;color:var(--muted);font-size:0.9rem;">掃描開啟本頁行程</span>
       </p>
     </section>
+
+    <section class="day" id="vote" aria-labelledby="vote-title">
+      <div class="day-heading">
+        <h2 id="vote-title">今晚吃什麼</h2>
+      </div>
+      <p style="margin-top:0;color:var(--muted);font-size:0.92rem;">填暱稱、選一個，再按投票。大家的票即時共用（示意選項，之後可換）。</p>
+
+      <div class="vote-field">
+        <label for="vote-name">你的暱稱</label>
+        <input id="vote-name" type="text" maxlength="20" placeholder="輸入暱稱" autocomplete="off">
+      </div>
+
+      <div class="vote-options" role="group" aria-label="晚餐選項">
+        <button type="button" data-choice="牛肉湯" aria-pressed="false">牛肉湯</button>
+        <button type="button" data-choice="滷味" aria-pressed="false">滷味</button>
+        <button type="button" data-choice="擔仔麵" aria-pressed="false">擔仔麵</button>
+        <button type="button" data-choice="海鮮" aria-pressed="false">海鮮</button>
+      </div>
+
+      <button type="button" class="vote-submit" id="vote-submit">送出投票</button>
+      <p class="vote-msg" id="vote-msg" role="status"></p>
+
+      <ul class="vote-tally" id="vote-tally" aria-label="目前票數"></ul>
+      <ul class="vote-list" id="vote-list" aria-label="投票名單"></ul>
+    </section>
   </main>
+
+  <!-- Supabase JS（官方 CDN）：用於跨裝置共用勾選 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.95.0/dist/umd/supabase.min.js"></script>
+  <script>
+    (function () {
+      var LS_VIEW = "tainan-view";
+      var LS_CHECK = "tainan-checks";
+
+      // ---- Supabase 設定（publishable 金鑰，可公開）----
+      var SUPABASE_URL = "https://tlmavfdrdyspdykgeyut.supabase.co";
+      var SUPABASE_KEY = "sb_publishable_Gsx7qPi1kvRA2oFDW7P_OQ_xu6ZcFyD";
+
+      // ---- 讀寫 localStorage（無痕或停用時安全略過）----
+      function readJSON(key, fallback) {
+        try {
+          var raw = localStorage.getItem(key);
+          return raw ? JSON.parse(raw) : fallback;
+        } catch (e) { return fallback; }
+      }
+      function writeJSON(key, value) {
+        try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+      }
+      function readStr(key, fallback) {
+        try { return localStorage.getItem(key) || fallback; } catch (e) { return fallback; }
+      }
+      function writeStr(key, value) {
+        try { localStorage.setItem(key, value); } catch (e) {}
+      }
+
+      // ---- 檢視切換：第一天 / 第二天 / 全部 ----
+      var buttons = Array.prototype.slice.call(document.querySelectorAll(".day-switch button"));
+      var day1 = document.getElementById("day-1");
+      var day2 = document.getElementById("day-2");
+
+      function applyView(view) {
+        if (day1) day1.classList.toggle("is-hidden", view === "2");
+        if (day2) day2.classList.toggle("is-hidden", view === "1");
+        buttons.forEach(function (b) {
+          b.setAttribute("aria-pressed", b.getAttribute("data-view") === view ? "true" : "false");
+        });
+      }
+
+      var savedView = readStr(LS_VIEW, "all");
+      if (savedView !== "1" && savedView !== "2" && savedView !== "all") savedView = "all";
+      applyView(savedView);
+
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          var view = b.getAttribute("data-view");
+          applyView(view);
+          writeStr(LS_VIEW, view);
+        });
+      });
+
+      // ---- 每站勾選：雲端共用（Supabase）+ localStorage 離線備援 ----
+      var checks = readJSON(LS_CHECK, {});           // 離線備援的最後狀態
+      var boxes = Array.prototype.slice.call(document.querySelectorAll(".stop-check input[type=checkbox]"));
+      var boxById = {};
+      boxes.forEach(function (b) { boxById[b.getAttribute("data-stop")] = b; });
+
+      // 先用本機備援把畫面畫出來（即使離線或 Supabase 載入失敗也看得到）
+      function paint(id, done) {
+        var box = boxById[id];
+        if (!box) return;
+        box.checked = done;
+        var card = box.closest(".stop-card");
+        if (card) card.classList.toggle("is-done", done);
+      }
+      Object.keys(checks).forEach(function (id) { paint(id, !!checks[id]); });
+
+      // 建立 Supabase client（CDN 載入失敗則退回純本機模式）
+      var sb = null;
+      try {
+        if (window.supabase && SUPABASE_URL.indexOf("http") === 0) {
+          sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        }
+      } catch (e) { sb = null; }
+
+      function setLocal(id, done) {
+        checks[id] = done;
+        writeJSON(LS_CHECK, checks);
+      }
+
+      if (sb) {
+        // 1) 開頁讀取雲端目前狀態
+        sb.from("checks").select("stop_id,done").then(function (res) {
+          if (res && res.data) {
+            res.data.forEach(function (row) {
+              paint(row.stop_id, !!row.done);
+              setLocal(row.stop_id, !!row.done);
+            });
+          }
+        });
+
+        // 2) 即時同步：別人改了，自己畫面跟著更新
+        sb.channel("checks-realtime")
+          .on("postgres_changes",
+              { event: "*", schema: "public", table: "checks" },
+              function (payload) {
+                var row = payload.new;
+                if (row && row.stop_id) {
+                  paint(row.stop_id, !!row.done);
+                  setLocal(row.stop_id, !!row.done);
+                }
+              })
+          .subscribe();
+
+        // 3) 自己勾選 → 寫回雲端（並立即更新本機備援與畫面）
+        boxes.forEach(function (box) {
+          box.addEventListener("change", function () {
+            var id = box.getAttribute("data-stop");
+            paint(id, box.checked);
+            setLocal(id, box.checked);
+            sb.from("checks")
+              .update({ done: box.checked, updated_at: new Date().toISOString() })
+              .eq("stop_id", id)
+              .then(function (res) {
+                if (res && res.error) {
+                  // 寫雲端失敗時至少保有本機狀態
+                  console.warn("雲端更新失敗，已保留本機狀態", res.error);
+                }
+              });
+          });
+        });
+      } else {
+        // 退回：純本機模式（和先前行為相同）
+        boxes.forEach(function (box) {
+          box.addEventListener("change", function () {
+            var id = box.getAttribute("data-stop");
+            paint(id, box.checked);
+            setLocal(id, box.checked);
+          });
+        });
+      }
+
+      // ================= 晚餐投票 =================
+      var LS_VOTED = "tainan-voted";
+      var nameInput = document.getElementById("vote-name");
+      var optionBtns = Array.prototype.slice.call(document.querySelectorAll(".vote-options button"));
+      var submitBtn = document.getElementById("vote-submit");
+      var voteMsg = document.getElementById("vote-msg");
+      var tallyEl = document.getElementById("vote-tally");
+      var listEl = document.getElementById("vote-list");
+      var chosen = null;
+
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
+
+      // 選項按鈕
+      optionBtns.forEach(function (b) {
+        b.addEventListener("click", function () {
+          chosen = b.getAttribute("data-choice");
+          optionBtns.forEach(function (x) {
+            x.setAttribute("aria-pressed", x === b ? "true" : "false");
+          });
+        });
+      });
+
+      // 已投過（本裝置）→ 鎖定投票鈕
+      function alreadyVoted() { return readStr(LS_VOTED, "") === "1"; }
+      function lockIfVoted() {
+        if (alreadyVoted()) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "你已經投過了";
+        }
+      }
+      lockIfVoted();
+
+      // 渲染票數與名單
+      function render(rows) {
+        if (!rows) return;
+        var counts = {};
+        optionBtns.forEach(function (b) { counts[b.getAttribute("data-choice")] = 0; });
+        rows.forEach(function (r) {
+          if (counts.hasOwnProperty(r.choice)) counts[r.choice]++;
+          else counts[r.choice] = 1;
+        });
+        tallyEl.innerHTML = Object.keys(counts).map(function (k) {
+          return "<li><span>" + esc(k) + "</span><span class='count'>" + counts[k] + " 票</span></li>";
+        }).join("");
+        listEl.innerHTML = rows.length
+          ? rows.map(function (r) {
+              return "<li><span class='who'>" + esc(r.nickname) + "</span>：" + esc(r.choice) + "</li>";
+            }).join("")
+          : "<li>還沒有人投票</li>";
+      }
+
+      function loadVotes() {
+        if (!sb) { voteMsg.textContent = "投票需要連線，目前無法載入。"; return; }
+        sb.from("dinner_votes").select("nickname,choice,created_at")
+          .order("created_at", { ascending: true })
+          .then(function (res) {
+            if (res && res.data) render(res.data);
+          });
+      }
+
+      if (sb) {
+        loadVotes();
+
+        // 即時同步票數
+        sb.channel("votes-realtime")
+          .on("postgres_changes",
+              { event: "INSERT", schema: "public", table: "dinner_votes" },
+              function () { loadVotes(); })
+          .subscribe();
+
+        submitBtn.addEventListener("click", function () {
+          if (alreadyVoted()) return;
+          var name = (nameInput.value || "").trim();
+          if (!name) { voteMsg.textContent = "請先填暱稱。"; return; }
+          if (!chosen) { voteMsg.textContent = "請選一個晚餐選項。"; return; }
+          submitBtn.disabled = true;
+          voteMsg.textContent = "投票中…";
+          sb.from("dinner_votes").insert({ nickname: name, choice: chosen })
+            .then(function (res) {
+              if (res && res.error) {
+                submitBtn.disabled = false;
+                voteMsg.textContent = "投票失敗，請稍後再試。";
+              } else {
+                writeStr(LS_VOTED, "1");
+                submitBtn.textContent = "投票成功，謝謝！";
+                voteMsg.textContent = "你投給了「" + chosen + "」。";
+                loadVotes();
+              }
+            });
+        });
+      } else {
+        voteMsg.textContent = "投票需要連線，目前無法使用。";
+        submitBtn.disabled = true;
+      }
+    })();
+  </script>
 </body>
 </html>
