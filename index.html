@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="給寶貝與小旅伴的溫馨浪漫台南兩天一夜行程，含景點、美食與伴手禮安排。">
+  <title>溫馨浪漫台南之旅</title>
+  <style>
+    :root {
+      --ink: #33261f;
+      --muted: #66534a;
+      --paper: #f8efdf;
+      --paper-deep: #ead8bd;
+      --card: #fffaf0;
+      --line: #d7b996;
+      --brick: #a64f3d;
+      --brick-dark: #78392e;
+      --green: #3f5a4b;
+      --caramel: #c8874d;
+      --sun: #e8a85c;
+      --shadow: 0 10px 24px rgba(86, 54, 35, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--paper);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(232, 168, 92, 0.18) 0, transparent 23%),
+        linear-gradient(135deg, rgba(255, 250, 240, 0.65), transparent 45%),
+        var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .page {
+      width: min(100% - 32px, 720px);
+      margin: 0 auto;
+      padding: 16px 0 48px;
+    }
+
+    .main-visual {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      border: 4px solid var(--green);
+      border-radius: 24px;
+      background: #e9b26d;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 28px 4px 24px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 8px;
+      color: var(--brick-dark);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, "Noto Serif TC", "PMingLiU", serif;
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      color: var(--brick-dark);
+      font-size: clamp(2rem, 9vw, 3.5rem);
+      line-height: 1.18;
+      letter-spacing: 0.04em;
+    }
+
+    .intro {
+      max-width: 32rem;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .notice {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 13px 15px;
+      border: 1px solid #d99b7c;
+      border-radius: 14px;
+      color: var(--brick-dark);
+      background: #fff1e2;
+      font-size: 0.93rem;
+      font-weight: 700;
+    }
+
+    .notice strong {
+      flex: 0 0 auto;
+    }
+
+    .day {
+      margin-top: 22px;
+      padding: 22px 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 250, 240, 0.84);
+      box-shadow: var(--shadow);
+    }
+
+    .day-heading {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin: 0 0 20px;
+    }
+
+    .day-number {
+      display: grid;
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      place-items: center;
+      border-radius: 16px;
+      color: #fffaf0;
+      background: var(--brick);
+      font-size: 1.1rem;
+      font-weight: 800;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .day-heading h2 {
+      margin: 0;
+      color: var(--green);
+      font-size: 1.45rem;
+      line-height: 1.25;
+    }
+
+    .day-heading p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline::before {
+      position: absolute;
+      top: 14px;
+      bottom: 14px;
+      left: 15px;
+      width: 2px;
+      content: "";
+      background: var(--paper-deep);
+    }
+
+    .stop {
+      position: relative;
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+    }
+
+    .stop-dot {
+      z-index: 1;
+      width: 14px;
+      height: 14px;
+      margin: 12px 0 0 9px;
+      border: 3px solid var(--paper);
+      border-radius: 50%;
+      background: var(--caramel);
+      box-shadow: 0 0 0 2px var(--paper-deep);
+    }
+
+    .stop-card {
+      min-width: 0;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--card);
+    }
+
+    .stop-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      align-items: center;
+      margin-bottom: 5px;
+      color: var(--brick-dark);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .time {
+      padding: 2px 8px;
+      border-radius: 999px;
+      color: #573019;
+      background: #f3d2a9;
+      white-space: nowrap;
+    }
+
+    .stop-card h3 {
+      margin-bottom: 5px;
+      color: var(--ink);
+      font-size: 1.12rem;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+
+    .stop-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    footer {
+      padding: 26px 4px 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    @media (min-width: 560px) {
+      .page {
+        padding-top: 28px;
+      }
+
+      .hero {
+        padding-right: 18px;
+        padding-left: 18px;
+      }
+
+      .day {
+        padding: 26px 24px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <svg class="main-visual" viewBox="0 0 720 390" role="img" aria-label="暖色夕陽下的台南老屋、廟宇屋簷與綠色植物插畫" preserveAspectRatio="xMidYMid meet">
+      <rect width="720" height="390" fill="#e9b26d"/>
+      <circle cx="548" cy="126" r="70" fill="#f7d69d" opacity="0.9"/>
+      <circle cx="548" cy="126" r="62" fill="#e8a85c"/>
+      <path d="M0 214 C130 180 230 208 350 184 C500 154 610 188 720 156 V390 H0Z" fill="#d67b4d" opacity="0.48"/>
+      <path d="M0 276 H720 V390 H0Z" fill="#3f5a4b"/>
+      <path d="M42 275 V177 H178 V275Z" fill="#f8efdf" stroke="#78392e" stroke-width="8"/>
+      <path d="M28 180 L110 126 L192 180 Z" fill="#a64f3d" stroke="#78392e" stroke-width="8"/>
+      <path d="M51 177 L110 142 L169 177" fill="none" stroke="#f3d2a9" stroke-width="9"/>
+      <rect x="70" y="215" width="31" height="60" rx="14" fill="#3f5a4b"/>
+      <rect x="120" y="215" width="31" height="60" rx="14" fill="#3f5a4b"/>
+      <path d="M239 278 V193 H454 V278Z" fill="#fffaf0" stroke="#78392e" stroke-width="8"/>
+      <path d="M222 196 Q346 125 471 196" fill="#a64f3d" stroke="#78392e" stroke-width="8"/>
+      <path d="M245 194 Q346 145 448 194" fill="none" stroke="#f3d2a9" stroke-width="10"/>
+      <path d="M280 278 V222 Q346 178 413 222 V278" fill="#3f5a4b" stroke="#78392e" stroke-width="8"/>
+      <path d="M278 278 Q346 205 414 278" fill="#e9b26d"/>
+      <path d="M521 278 C504 234 515 204 544 190 C541 222 558 240 570 278" fill="#2f493d"/>
+      <path d="M584 278 C574 236 594 213 621 204 C613 232 635 245 642 278" fill="#2f493d"/>
+      <path d="M552 278 C553 244 558 215 569 185" fill="none" stroke="#2f493d" stroke-width="7"/>
+      <path d="M615 278 C614 247 610 226 601 202" fill="none" stroke="#2f493d" stroke-width="7"/>
+      <path d="M0 315 Q180 282 360 317 T720 307 V390 H0Z" fill="#294137"/>
+      <path d="M34 330 Q110 300 183 327" fill="none" stroke="#e8a85c" stroke-width="5" opacity="0.7"/>
+      <path d="M486 329 Q573 299 680 324" fill="none" stroke="#e8a85c" stroke-width="5" opacity="0.7"/>
+      <g fill="#f8efdf" opacity="0.9">
+        <circle cx="87" cy="78" r="3"/><circle cx="174" cy="103" r="4"/><circle cx="635" cy="66" r="3"/><circle cx="682" cy="112" r="4"/>
+      </g>
+    </svg>
+
+    <header class="hero">
+      <p class="eyebrow">給寶貝與小旅伴的 · 台南兩天一夜</p>
+      <h1>溫馨浪漫台南之旅</h1>
+      <p class="intro">慢慢吃、慢慢逛，把古城的午後和夜晚留給彼此。以下安排以手機閱讀為主，走輕鬆不趕路的節奏。</p>
+      <div class="notice" role="note">
+        <strong>行前提醒</strong>
+        <span>本頁的時間與店名皆為示意，出發前請替換成實際訂位、營業時間與交通資訊。</span>
+      </div>
+    </header>
+
+    <section class="day" aria-labelledby="day-one-title">
+      <div class="day-heading">
+        <div class="day-number">DAY<br>01</div>
+        <div>
+          <h2 id="day-one-title">老城散步與夜食</h2>
+          <p>抵達後先填飽肚子，再沿著老街慢慢走。</p>
+        </div>
+      </div>
+
+      <ol class="timeline">
+        <li class="timeline-item stop">
+          <div class="stop-dot" aria-hidden="true"></div>
+          <div class="stop-card">
+            <div class="stop-meta"><span class="time">10:30（示意）</span><span>抵達</span></div>
+            <h3>台南車站・行李寄放（示意）</h3>
+            <p>先寄放行李、補充水分，確認接下來的步行與交通路線。</p>
+          </div>
+        </li>
+
+        <li class="timeline-item stop">
+          <div class="stop-dot" aria-hidden="true"></div>
+          <div class="stop-card">
+            <div class="stop-meta"><span class="time">12:00（示意）</span><span>午餐</span></div>
+            <h3>古城家常菜・午餐店（示意）</h3>
+            <p>用一份熱騰騰的台南風味午餐開場，吃飽再開始下午行程。</p>
+          </div>
+        </li>
+
+        <li class="timeline-item stop">
+          <div class="stop-dot" aria-hidden="true"></div>
+          <div class="stop-card">
+            <div class="stop-meta"><span class="time">14:00（示意）</span><span>散步景點</span></div>
+            <h3>神農街與海安路（示意）</h3>
+            <p>沿著老屋街區拍照、逛小店，留一段不排太滿的散步時間。</p>
+          </div>
+        </li>
+
+        <li class="timeline-item stop">
+          <div class="stop-dot" aria-hidden="true"></div>
+          <div class="stop-card">
+            <div class="stop-meta"><span class="time">18:00（示意）</span><span>晚餐</span></div>
+            <h3>府城小吃聚落・晚餐（示意）</h3>
+            <p>挑幾樣想吃的小吃分著吃，飯後再到附近街區散步消化。</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="day" aria-labelledby="day-two-title">
+      <div class="day-heading">
+        <div class="day-number">DAY<br>02</div>
+        <div>
+          <h2 id="day-two-title">早晨古蹟與伴手禮</h2>
+          <p>早起看一點風景，帶著喜歡的味道回家。</p>
+        </div>
+      </div>
+
+      <ol class="timeline">
+        <li class="timeline-item stop">
+          <div class="stop-dot" aria-hidden="true"></div>
+          <div class="stop-card">
+            <div class="stop-meta"><span class="time">08:30（示意）</span><span>早餐</span></div>
+            <h3>巷口牛肉湯・早餐（示意）</h3>
+            <p>用一碗暖胃早餐開啟第二天，吃完保留體力繼續走景點。</p>
+          </div>
+        </li>
+
+        <li class="timeline-item stop">
+          <div class="stop-dot" aria-hidden="true"></div>
+          <div class="stop-card">
+            <div class="stop-meta"><span class="time">10:00（示意）</span><span>景點</span></div>
+            <h3>赤崁樓周邊・古蹟散步（示意）</h3>
+            <p>走訪古蹟與周邊街巷，安排一段慢慢看建築、聽故事的時間。</p>
+          </div>
+        </li>
+
+        <li class="timeline-item stop">
+          <div class="stop-dot" aria-hidden="true"></div>
+          <div class="stop-card">
+            <div class="stop-meta"><span class="time">12:30（示意）</span><span>午餐</span></div>
+            <h3>老宅餐桌・午餐（示意）</h3>
+            <p>找間舒適的老宅餐館坐下來休息，替下午返程補充能量。</p>
+          </div>
+        </li>
+
+        <li class="timeline-item stop">
+          <div class="stop-dot" aria-hidden="true"></div>
+          <div class="stop-card">
+            <div class="stop-meta"><span class="time">14:30（示意）</span><span>伴手禮</span></div>
+            <h3>府城甜點舖・伴手禮（示意）</h3>
+            <p>挑選常溫、好攜帶的點心，最後整理行李並預留回程交通時間。</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <footer>小提醒：實際時間請依交通、預約與店家公告彈性調整。</footer>
+
+    <section class="day" aria-labelledby="pre-trip-title">
+      <div class="day-heading">
+        <h2 id="pre-trip-title">行前提醒</h2>
+      </div>
+      <p><strong>天氣：</strong>晴時多雲，約 24–30°C（示意）</p>
+      <p><strong>要帶的東西：</strong>水壺、防曬、雨具、行動電源（示意）</p>
+      <p><strong>集合時間：</strong>第一天 10:00，台南車站前（示意）</p>
+    </section>
+  </main>
+</body>
+</html>
